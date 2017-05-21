@@ -23,6 +23,7 @@ public slots:
 private:
     Ui::MainWindow *ui;
     void disableInput();
+    void enableInput();
 };
 
 #endif // MAINWINDOW_H

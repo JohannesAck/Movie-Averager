@@ -14,13 +14,13 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>10</x>
       <y>10</y>
       <width>429</width>
-      <height>161</height>
+      <height>178</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -41,6 +41,13 @@
         </widget>
        </item>
       </layout>
+     </item>
+     <item>
+      <widget class="QCheckBox" name="cbQuickMode">
+       <property name="text">
+        <string>Quick</string>
+       </property>
+      </widget>
      </item>
      <item>
       <widget class="QLabel" name="label">

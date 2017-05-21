@@ -20,7 +20,7 @@ void MainWindow::slotProcessVideo(bool)
     std::vector<cv::Vec3b> calculatedMeans;
     if(ui->lefilePath->text().length() != 0) {
         VideoProcessor processor(ui->lefilePath->text().toStdString());
-        calculatedMeans = processor.calculateMeans();
+        calculatedMeans = processor.calculateMeans(ui->cbQuickMode->isChecked());
     }
     for(auto it = calculatedMeans.begin(); it != calculatedMeans.end(); ++it) {
         std::cout << "B:" << +(*it)[0] << " G:" << +(*it)[1] << " R:" << +(*it)[2] <<std::endl;
@@ -31,9 +31,9 @@ void MainWindow::slotProcessVideo(bool)
     cv::imwrite(ui->leOuputPath->text().toStdString(), *resultingImage);
 
     cv::imshow("Test-Output",*resultingImage);
-    cv::waitKey();
 
     delete(resultingImage);
+    enableInput();
 }
 
 void MainWindow::disableInput() {
@@ -41,4 +41,11 @@ void MainWindow::disableInput() {
     ui->lefilePath->setEnabled(false);
     ui->leNrColumns->setEnabled(false);
     ui->leNrRows->setEnabled(false);
+}
+
+void MainWindow::enableInput() {
+    ui->pbProcessVideo->setEnabled(true);
+    ui->lefilePath->setEnabled(true);
+    ui->leNrColumns->setEnabled(true);
+    ui->leNrRows->setEnabled(true);
 }
