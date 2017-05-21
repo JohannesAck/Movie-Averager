@@ -40,3 +40,9 @@ doxyStuff/
 
 # Autosave
 *.autosave
+
+#Specific Fileending
+*.png
+*.jpg
+*.mkv
+*.mp4
