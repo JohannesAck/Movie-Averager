@@ -22,15 +22,13 @@ void MainWindow::slotProcessVideo(bool)
         VideoProcessor processor(ui->lefilePath->text().toStdString());
         calculatedMeans = processor.calculateMeans(ui->cbQuickMode->isChecked());
     }
-    for(auto it = calculatedMeans.begin(); it != calculatedMeans.end(); ++it) {
-        std::cout << "B:" << +(*it)[0] << " G:" << +(*it)[1] << " R:" << +(*it)[2] <<std::endl;
-    }
     cv::Mat* resultingImage = VideoProcessor::imageFromVector(calculatedMeans,
                                                               ui->leNrColumns->text().toInt(),
                                                               ui->leNrRows->text().toInt());
+
     cv::imwrite(ui->leOuputPath->text().toStdString(), *resultingImage);
 
-    cv::imshow("Test-Output",*resultingImage);
+    cv::imshow("Output",*resultingImage);
 
     delete(resultingImage);
     enableInput();

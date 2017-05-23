@@ -1,27 +1,29 @@
 #include "videoprocessor.h"
 
-VideoProcessor::VideoProcessor()
-{
-
-}
-
 VideoProcessor::VideoProcessor(std::string filePath) :
     _filePath(filePath)
 {
     _cap = cv::VideoCapture(_filePath);
-    _frameCount = (int) _cap.get(CV_CAP_PROP_FRAME_COUNT);
+    _totalFrameCount = (int) _cap.get(CV_CAP_PROP_FRAME_COUNT);
 }
 
+
+//TODO: Move to QThread
 std::vector<cv::Vec3b> VideoProcessor::calculateMeans(bool quick) {
     _cap.open(_filePath);
     cv::Mat currentFrame;
-    std::vector<cv::Vec3b> means; //maybe initialize with fitting size
+    std::vector<cv::Vec3b> means;
+    means.resize(_totalFrameCount);
+
     _cap >> currentFrame;
+
     int frameCounter = 1;
-    while(!currentFrame.empty()) { //iterate frames
-        std::cout << "Processing Frame Nr." << frameCounter++ << "/" << _frameCount << std::endl;
+    while(!currentFrame.empty()) { //iterate frames till none left
+
+        std::cout << "Processing Frame Nr." << frameCounter++ << "/" << _totalFrameCount << std::endl;
+
         cv::Vec3i currentFrameMean;
-        //add up all pixel colors
+
         if(quick) {
             for(int x = 0; x < currentFrame.rows; x += 10) {
                 for (int y = 0; y < currentFrame.cols; y += 10) {
@@ -56,7 +58,8 @@ std::vector<cv::Vec3b> VideoProcessor::calculateMeans(bool quick) {
 cv::Mat* VideoProcessor::imageFromVector(std::vector<cv::Vec3b> &meanColorValues, int outputRows, int outputColumns) {
     int rows = 50;
     int columns = meanColorValues.size();
-    cv::Mat* resultingImage = new cv::Mat(rows,columns,CV_8UC3);
+
+    cv::Mat* resultingImage = new cv::Mat(rows,columns,CV_8UC3); //Matrix of 3-Entry-uchar-vectors
     for(int x = 0; x < columns; x++) {
         for(int y = 0; y < rows; y++) {
             resultingImage->at<cv::Vec3b>(cv::Point(x,y)) = meanColorValues[x];
