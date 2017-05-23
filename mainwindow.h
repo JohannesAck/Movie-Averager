@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 #include <QString>
+#include <QFileDialog>
+
 #include <videoprocessor.h>
 
 namespace Ui {
@@ -24,6 +26,7 @@ public slots:
      * Called upon pressing "Process Video" button
      */
     void slotProcessVideo(bool);
+    void fileDialogInput();
 
 private:
     Ui::MainWindow *ui;
@@ -35,6 +38,8 @@ private:
      * @brief Reenables Input.
      */
     void enableInput();
+
+
 };
 
 #endif // MAINWINDOW_H

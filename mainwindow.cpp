@@ -7,6 +7,8 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     QWidget::connect(ui->pbProcessVideo, SIGNAL(clicked(bool)), this, SLOT(slotProcessVideo(bool)));
+    QWidget::connect(ui->tbfilePath, SIGNAL(clicked(bool)), this, SLOT(fileDialogInput()));
+
 }
 
 MainWindow::~MainWindow()
@@ -30,7 +32,9 @@ void MainWindow::slotProcessVideo(bool)
 
     cv::imshow("Output",*resultingImage);
 
-    delete(resultingImage);
+    cv::waitKey(0);
+
+//    delete(resultingImage);
     enableInput();
 }
 
@@ -46,4 +50,11 @@ void MainWindow::enableInput() {
     ui->lefilePath->setEnabled(true);
     ui->leNrColumns->setEnabled(true);
     ui->leNrRows->setEnabled(true);
+}
+
+void MainWindow::fileDialogInput() { //TODO: spits out errors
+    QString fileName = QFileDialog::getOpenFileName(this,
+        tr("Choose Input Video"), ".", tr("Video Formats (*.mkv *.mp4 *.avi)"));
+    ui->lefilePath->setText(fileName);
+
 }

@@ -20,12 +20,19 @@
       <x>10</x>
       <y>10</y>
       <width>429</width>
-      <height>178</height>
+      <height>251</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout_2">
      <item>
       <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <widget class="QLabel" name="label_5">
+         <property name="text">
+          <string>Input-File</string>
+         </property>
+        </widget>
+       </item>
        <item>
         <widget class="QLineEdit" name="lefilePath">
          <property name="text">
@@ -34,9 +41,9 @@
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="pbProcessVideo">
+        <widget class="QToolButton" name="tbfilePath">
          <property name="text">
-          <string>Process Video</string>
+          <string>...</string>
          </property>
         </widget>
        </item>
@@ -46,6 +53,9 @@
       <widget class="QCheckBox" name="cbQuickMode">
        <property name="text">
         <string>Quick</string>
+       </property>
+       <property name="checked">
+        <bool>true</bool>
        </property>
       </widget>
      </item>
@@ -105,6 +115,13 @@
         </widget>
        </item>
       </layout>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pbProcessVideo">
+       <property name="text">
+        <string>Process Video</string>
+       </property>
+      </widget>
      </item>
     </layout>
    </widget>
