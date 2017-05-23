@@ -32,7 +32,6 @@
 *.app
 
 # QT Profile
-*.pro
 *.pro.user
 
 # Documentation
