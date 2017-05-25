@@ -19,12 +19,25 @@ std::vector<cv::Vec3b> VideoProcessor::calculateMeans(bool quick) {
 
     _cap >> currentFrame;
 
+
     for(int frameCounter = 1; frameCounter < _totalFrameCount; frameCounter++) { //iterate frames till none left
         if(frameCounter % 100 == 0) { //significantly quicker than output every time
             std::cout << "Processing Frame Nr." << frameCounter << "/" << _totalFrameCount << std::endl;
         }
 
         cv::Vec3i currentFrameMean;
+
+
+        if(currentFrame.empty()) { //ignore faulty frames
+//            currentFrameMean[0] == 0;
+//            currentFrameMean[1] == 0;
+//            currentFrameMean[2] == 0;
+            std::cout << "Fault frame enocuntered." << std::endl;
+            means[frameCounter - 1] = currentFrameMean;
+            _cap >> currentFrame;
+            continue;
+        }
+
 
         if(quick) {
             for(int x = 0; x < currentFrame.rows; x += 10) {
@@ -45,6 +58,7 @@ std::vector<cv::Vec3b> VideoProcessor::calculateMeans(bool quick) {
                     currentFrameMean[2] += currentFrame.at<cv::Vec3b>(x,y)[2];
                 }
             }
+
             currentFrameMean[0] /= (currentFrame.cols * currentFrame.rows);
             currentFrameMean[1] /= (currentFrame.cols * currentFrame.rows);
             currentFrameMean[2] /= (currentFrame.cols * currentFrame.rows);
