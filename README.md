@@ -11,6 +11,16 @@ However, currently the program is quite slow for long or high resolution videos
 # Examples
  * Martian:
  ![Less orange than expected](examples/martian.png)
+ * The Dark Knight:
+ ![Quite dark indeed](examples/dark_night.png)
+ * Spectre
+ ![Clearly visible desert scenes in the beginning](examples/spectre.png)
+ * Chappie
+ ![](examples/chappie.png)
+ * Revenant
+ ![](examples/revenant.png)
+
+
 
 # Further Improvments:
  * Generally speed up
