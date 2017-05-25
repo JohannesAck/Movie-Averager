@@ -8,6 +8,10 @@ Compile with qmake or from qt creator.
 Afterwards the GUI should be self explanatory.
 However, currently the program is quite slow for long or high resolution videos
 
+# Examples
+ * Martian:
+ ![Less orange than expected](examples/martian.png)
+
 # Further Improvments:
  * Generally speed up
  * Fix error output from file dialogue
